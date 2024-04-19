@@ -1,7 +1,11 @@
 //LocalStorage
+const id = window.localStorage.getItem("id");
 const quantity = window.localStorage.getItem("qty");
-const price = window.localStorage.getItem("price");
+const colors = window.localStorage.getItem("colors");
 
+//connect api
+const response = await fetch(`http://localhost:3000/api/products/${id}`);
+const products = await response.json();
 
 const cartItems = document.getElementById("cart__items");
 
@@ -23,6 +27,7 @@ const cartItemsSettingsQuantityInput= document.createElement("input");
 const cartItemsContentDelete = document.createElement("div");
 const cartItemsDeleteTxt = document.createElement("p");
 
+const totalPrice = quantity * products.price;
 
 //ADD CLASS & ATTRIBUTE
 articleItems.classList.add("cart__item");
@@ -35,15 +40,20 @@ cartItemsSettingsQuantityInput.classList.add("itemQuantity");
 cartItemsContentDelete.classList.add("cart__item__content__settings__delete");
 cartItemsDeleteTxt.classList.add("deleteItem");
 
-itemsImg.setAttribute("src","../images/product01.jpg");
-itemsImg.setAttribute("alt","Photographie d'un canapé");
+itemsImg.setAttribute("src",`${products.imageUrl}`);
+itemsImg.setAttribute("alt",`${products.altTxt}`);
 cartItemsSettingsQuantityInput.setAttribute("type","number");
 cartItemsSettingsQuantityInput.setAttribute("name","itemQuantity");
 cartItemsSettingsQuantityInput.setAttribute("min","1");
 cartItemsSettingsQuantityInput.setAttribute("max","100");
-cartItemsSettingsQuantityInput.setAttribute("value","42");
+cartItemsSettingsQuantityInput.setAttribute("value", quantity);
 
+cartItemsDescriptionTitle.innerHTML = products.name;
+cartItemsDescriptionTxt.innerHTML = colors;
+cartItemsDescriptionPrice.innerHTML = products.price + " €";
 cartItemsDeleteTxt.innerHTML = "Supprimer";
+document.getElementById("totalQuantity").innerHTML = quantity;
+document.getElementById("totalPrice").innerHTML = totalPrice;
 
 
 // ADD DOM

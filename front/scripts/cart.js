@@ -1,4 +1,11 @@
+//LocalStorage
+const quantity = window.localStorage.getItem("qty");
+const price = window.localStorage.getItem("price");
+
+
 const cartItems = document.getElementById("cart__items");
+
+
 // CREATE DOM
 const articleItems = document.createElement("article");
 const cartItemsImg = document.createElement("div");
@@ -24,11 +31,20 @@ cartItemsContent.classList.add("cart__item__content");
 cartItemsContentDescription.classList.add("cart__item__content__description");
 cartItemsContentSettings.classList.add("cart__item__content__settings");
 cartItemsSettingsQuantityContainer.classList.add("cart__item__content__settings__quantity");
+cartItemsSettingsQuantityInput.classList.add("itemQuantity");
 cartItemsContentDelete.classList.add("cart__item__content__settings__delete");
 cartItemsDeleteTxt.classList.add("deleteItem");
 
 itemsImg.setAttribute("src","../images/product01.jpg");
 itemsImg.setAttribute("alt","Photographie d'un canapé");
+cartItemsSettingsQuantityInput.setAttribute("type","number");
+cartItemsSettingsQuantityInput.setAttribute("name","itemQuantity");
+cartItemsSettingsQuantityInput.setAttribute("min","1");
+cartItemsSettingsQuantityInput.setAttribute("max","100");
+cartItemsSettingsQuantityInput.setAttribute("value","42");
+
+cartItemsDeleteTxt.innerHTML = "Supprimer";
+
 
 // ADD DOM
 cartItems.appendChild(articleItems);
@@ -45,3 +61,4 @@ cartItemsSettingsQuantityContainer.appendChild(cartItemsSettingsQuantityTxt);
 cartItemsSettingsQuantityContainer.appendChild(cartItemsSettingsQuantityInput);
 cartItemsContentSettings.appendChild(cartItemsContentDelete);
 cartItemsContentDelete.appendChild(cartItemsDeleteTxt);
+

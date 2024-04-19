@@ -30,5 +30,9 @@ for(let i=0 ; i < products.colors.length; i++){
 }
 
 addCart.addEventListener("click", function addToCard(){
-    console.log("salut");
-});
+    const qtyValue = document.getElementById("quantity").value;
+    window.localStorage.setItem("qty", qtyValue);
+    window.localStorage.setItem("price", products.price);
+    window.localStorage.setItem("colors", colors.value);
+    alert(`Le produit ${products.name} est bien ajouté à votre panier`);
+})

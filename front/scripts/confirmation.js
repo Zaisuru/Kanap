@@ -1,4 +1,2 @@
-const idOrder = document.getElementById("orderId");
+const idOrder = document.getElementById("orderId")
 
-
-idOrder.innerHTML = 500100200;

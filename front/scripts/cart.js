@@ -1,10 +1,11 @@
 //LocalStorage
-const id = window.localStorage.getItem("id");
-const quantity = window.localStorage.getItem("qty");
-const colors = window.localStorage.getItem("colors");
+const cartList = window.localStorage.getItem("cartlist");
+console.log
+/*const quantity = window.localStorage.getItem("qty");
+const colors = window.localStorage.getItem("colors");*/
 
 //connect api
-const response = await fetch(`http://localhost:3000/api/products/${id}`);
+const response = await fetch(`http://localhost:3000/api/products/${cartList.id}`);
 const products = await response.json();
 
 const cartItems = document.getElementById("cart__items");
@@ -27,7 +28,7 @@ const cartItemsSettingsQuantityInput= document.createElement("input");
 const cartItemsContentDelete = document.createElement("div");
 const cartItemsDeleteTxt = document.createElement("p");
 
-const totalPrice = quantity * products.price;
+const totalPrice = cartList .quantity * products.price;
 
 //ADD CLASS & ATTRIBUTE
 articleItems.classList.add("cart__item");
@@ -46,13 +47,13 @@ cartItemsSettingsQuantityInput.setAttribute("type","number");
 cartItemsSettingsQuantityInput.setAttribute("name","itemQuantity");
 cartItemsSettingsQuantityInput.setAttribute("min","1");
 cartItemsSettingsQuantityInput.setAttribute("max","100");
-cartItemsSettingsQuantityInput.setAttribute("value", quantity);
+cartItemsSettingsQuantityInput.setAttribute("value", cartList.quantity);
 
 cartItemsDescriptionTitle.innerHTML = products.name;
 cartItemsDescriptionTxt.innerHTML = colors;
 cartItemsDescriptionPrice.innerHTML = products.price + " €";
 cartItemsDeleteTxt.innerHTML = "Supprimer";
-document.getElementById("totalQuantity").innerHTML = quantity;
+document.getElementById("totalQuantity").innerHTML = cartList.quantity;
 document.getElementById("totalPrice").innerHTML = totalPrice;
 
 

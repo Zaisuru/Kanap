@@ -73,6 +73,6 @@ addCart.addEventListener("click", function addToCard(){
     // Je mets à jour le localStorage avec le panier mis à jour
     window.localStorage.setItem('cartList', JSON.stringify(cartList));
 
-    // Je recharge la page (ou effectue une autre action après l'ajout au panier)
+    // Je recharge la page 
     window.location.reload();
 });
